@@ -1,22 +1,22 @@
 /*global $, jQuery, angular*/
 var myApp = angular.module("scheduleApp", []);
 
-function getDaysString($scope) {
+function getDaysString(newClass) {
     "use strict";
     var dayString = "";
-    if ($scope.mon) {
+    if (newClass.mon) {
         dayString += "mo";
     }
-    if ($scope.tue) {
+    if (newClass.tue) {
         dayString += "tu";
     }
-    if ($scope.wed) {
+    if (newClass.wed) {
         dayString += "we";
     }
-    if ($scope.thu) {
+    if (newClass.thu) {
         dayString += "th";
     }
-    if ($scope.fri) {
+    if (newClass.fri) {
         dayString += "fr";
     }
     return dayString;
@@ -68,6 +68,32 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         "Sign up for club A",
         "Play Pokemon go"
     ];
+
+
+
+    $scope.showAddTodo = false;
+    $scope.showAddClass = false;
+
+
+
+    $scope.isAdding = function () {
+        return $scope.showAddClass || $scope.showAddTodo;
+    };
+    $scope.todoClick = function () {
+        $scope.showAddTodo = true;
+    };
+    $scope.addClassClick = function () {
+        $scope.showAddClass = true;
+    };
+    $scope.formCancel = function () {
+        $scope.newTodoItem = "";
+        $scope.newClass = angular.copy({});
+        $scope.showAddClass = false;
+        $scope.showAddTodo = false;
+    };
+
+
+
     $scope.delTodo = function (todo) {
         var toDel = $scope.toDoItems.indexOf(todo);
         $scope.toDoItems.splice(toDel, 1);
@@ -78,21 +104,25 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
     };
     $scope.addTodo = function () {
         $scope.toDoItems.push($scope.newTodoItem);
+        $scope.showAddTodo = false;
+        $scope.newTodoItem = "";
     };
     $scope.addClass = function () {
         $scope.testClasses.push({
-            name: $scope.className,
-            days: getDaysString($scope),
-            strTime: $scope.newLecTime.startHr + ":" + $scope.newLecTime.startMin + $scope.newLecTime.startAmPm,
-            endTime: $scope.newLecTime.endHr + ":" + $scope.newLecTime.endMin + $scope.newLecTime.endAmPm,
-            loc: $scope.lecPlace,
-            webUrl: $scope.web,
+            name: $scope.newClass.className,
+            days: getDaysString($scope.newClass),
+            strTime: $scope.newClass.newLecTime.startHr + ":" + $scope.newClass.newLecTime.startMin + $scope.newClass.newLecTime.startAmPm,
+            endTime: $scope.newClass.newLecTime.endHr + ":" + $scope.newClass.newLecTime.endMin + $scope.newClass.newLecTime.endAmPm,
+            loc: $scope.newClass.lecPlace,
+            webUrl: $scope.newClass.web,
             final: {
-                strTime: $scope.newFinTime.startHr + $scope.newFinTime.startMin + $scope.newFinTime.startAmPm,
-                endTime: $scope.newFinTime.endHr + $scope.newFinTime.endMin + $scope.newFinTime.endAmPm,
-                date: $scope.fnlDate,
-                loc: $scope.fnlLoc
+                strTime: $scope.newClass.newFinTime.startHr + ":" + $scope.newClass.newFinTime.startMin + $scope.newClass.newFinTime.startAmPm,
+                endTime: $scope.newClass.newFinTime.endHr + ":" + $scope.newClass.newFinTime.endMin + $scope.newClass.newFinTime.endAmPm,
+                date: $scope.newClass.fnlDate,
+                loc: $scope.newClass.fnlLoc
             }
         });
+        $scope.newClass = angular.copy({});
+        $scope.showAddClass = false;
     };
 }]);

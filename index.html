@@ -15,7 +15,7 @@
     <body ng-app="scheduleApp" ng-controller="ScheduleController">
         <div id="todoContainer">
             <div id="todo">
-                <h3>Todo List<button id="addTodo">Add Task</button></h3>
+                <h3>Todo List<button id="addTodo" ng-click="todoClick()">Add Task</button></h3>
                 <ul>
                     <li ng-repeat="item in toDoItems">{{item}}<img src = "cancel_but.png"
                                                                    onmouseover="this.src='cancel_but_hover.png'"
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div id="classList">
-            <h3>Classes<button id="addClass">Add Class</button></h3>
+            <h3>Classes<button ng-click="addClassClick()">Add Class</button></h3>
             <div id="clssCont">
                 <div ng-repeat="class in testClasses">{{class.name}}<img src = "cancel_but.png"
                                                                          onmouseover="this.src='cancel_but_hover.png'"
@@ -91,29 +91,29 @@
                 </div>
             </div>
         </div>
-        <div id="formBackground">
-            <form id="addNewTodo" ng-submit="addTodo()">
+        <div id="formBackground" ng-show="isAdding()">
+            <form id="addNewTodo" ng-submit="addTodo()" ng-show="showAddTodo">
                 <h3>Add New Todo Item<br></h3>
                 <input class="inputText" type="text" ng-model="newTodoItem" placeholder="Type new todo here"><br>
                 <input class="submitNew" type="submit">
-                <button type="button" class="cancel" id="cancelTodo">Cancel</button>
+                <button type="button" class="cancel" id="cancelTodo" ng-click="formCancel()">Cancel</button>
             </form>
-            <form id="addNewClass" ng-submit="addClass()">
+            <form id="addNewClass" ng-submit="addClass()" ng-show="showAddClass">
                 <h3 style="border-bottom-style: inset; margin-bottom:10px;">Add New Class<br></h3>
 
                 <h4>Class Name:<br></h4>
-                <input class="inputText" type="text" ng-model="className" placeholder="Type new class name here"><br>
+                <input class="inputText" type="text" ng-model="newClass.className" placeholder="Type new class name here"><br>
                 <h4>Lecture Days:<br></h4>
-                <label><input class="newDays" type="checkbox" ng-model="mon" value="Monday">Monday</label>
-                <label><input class="newDays" type="checkbox" ng-model="tue" value="Tuesday">Tuesday</label>
-                <label><input class="newDays" type="checkbox" ng-model="wed" value="Wednesday">Wednesday</label>
-                <label><input class="newDays" type="checkbox" ng-model="thu" value="Thursday">Thursday</label>
-                <label><input class="newDays" type="checkbox" ng-model="fri" value="Friday">Friday</label><br>
+                <label><input class="newDays" type="checkbox" ng-model="newClass.mon" value="Monday">Monday</label>
+                <label><input class="newDays" type="checkbox" ng-model="newClass.tue" value="Tuesday">Tuesday</label>
+                <label><input class="newDays" type="checkbox" ng-model="newClass.wed" value="Wednesday">Wednesday</label>
+                <label><input class="newDays" type="checkbox" ng-model="newClass.thu" value="Thursday">Thursday</label>
+                <label><input class="newDays" type="checkbox" ng-model="newClass.fri" value="Friday">Friday</label><br>
 
                 <div id="lecTimeContainer">
                     <div id="lecStartTime">
                         <h4>Lecture Start Time:<br></h4>
-                        <select ng-model="newLecTime.startHr">
+                        <select ng-model="newClass.newLecTime.startHr">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -127,19 +127,19 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newLecTime.startMin">
+                        <select ng-model="newClass.newLecTime.startMin">
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newLecTime.startAmPm">
+                        <select ng-model="newClass.newLecTime.startAmPm">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
                     </div>
                     <div id="lecEndTime">
                         <h4>End Time:<br></h4>
-                        <select ng-model="newLecTime.endHr">
+                        <select ng-model="newClass.newLecTime.endHr">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -153,12 +153,12 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newLecTime.endMin">
+                        <select ng-model="newClass.newLecTime.endMin">
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newLecTime.endAmPm">
+                        <select ng-model="newClass.newLecTime.endAmPm">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
@@ -166,19 +166,19 @@
                 </div>
 
                 <h4>Lecture Location:<br></h4>
-                <input class="inputText" type="text" ng-model="lecPlace" placeholder="Type in lecture hall location"><br>
+                <input class="inputText" type="text" ng-model="newClass.lecPlace" placeholder="Type in lecture hall location"><br>
                 <h4>Class website:<br></h4>
-                <input class="inputText" type="text" ng-model="web" placeholder="full url please"><br>
+                <input class="inputText" type="text" ng-model="newClass.web" placeholder="full url please"><br>
 
                 <h3 style="border-bottom-style: inset; margin-bottom:10px;">Class Final<br></h3>
 
                 <h4>Final Date:<br></h4>
-                <input class="inputText" type="text" ng-model="fnlDate" placeholder="i.e. 05/15/12"><br>
+                <input class="inputText" type="text" ng-model="newClass.fnlDate" placeholder="i.e. 05/15/12"><br>
 
                 <div id="finTimeContainer">
                     <div id="finStartTime">
                         <h4>Final Start Time:<br></h4>
-                        <select ng-model="newFinTime.startHr">
+                        <select ng-model="newClass.newFinTime.startHr">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -192,19 +192,19 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newFinTime.startMin">
+                        <select ng-model="newClass.newFinTime.startMin">
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newFinTime.startAmPm">
-                            <option value="a">am</option>
-                            <option value="p">pm</option>
+                        <select ng-model="newClass.newFinTime.startAmPm">
+                            <option value="am">am</option>
+                            <option value="pm">pm</option>
                         </select>
                     </div>
                     <div id="finEndTime">
                         <h4>End Time:<br></h4>
-                        <select ng-model="newFinTime.endHr">
+                        <select ng-model="newClass.newFinTime.endHr">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -218,12 +218,12 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newFinTime.endMin">
+                        <select ng-model="newClass.newFinTime.endMin">
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newFinTime.endAmPm">
+                        <select ng-model="newClass.newFinTime.endAmPm">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
@@ -231,12 +231,11 @@
                 </div>
 
                 <h4>Final Location:<br></h4>
-                <input class="inputText" type="text" ng-model="fnlLoc" placeholder="Type Final location"><br>
+                <input class="inputText" type="text" ng-model="newClass.fnlLoc" placeholder="Type Final location"><br>
 
                 <input class="submitNew" type="submit">
-                <button type="button" class="cancel" id="cancelClass">Cancel</button>
+                <button type="button" class="cancel" id="cancelClass" ng-click="formCancel()">Cancel</button>
             </form>
         </div>
-        <script src="scripts.js"></script>
     </body>
 </html>
