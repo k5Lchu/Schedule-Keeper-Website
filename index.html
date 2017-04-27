@@ -94,7 +94,7 @@
         <div id="formBackground" ng-show="isAdding()">
             <form id="addNewTodo" ng-submit="addTodo()" ng-show="showAddTodo">
                 <h3>Add New Todo Item<br></h3>
-                <input class="inputText" type="text" ng-model="newTodoItem" placeholder="Type new todo here"><br>
+                <input class="inputText" type="text" ng-model="newTodoItem" ng-minlength="1" required placeholder="Type new todo here"><br>
                 <input class="submitNew" type="submit">
                 <button type="button" class="cancel" id="cancelTodo" ng-click="formCancel()">Cancel</button>
             </form>
@@ -231,7 +231,7 @@
                 </div>
 
                 <h4>Final Location:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.fnlLoc" placeholder="Type Final location"><br>
+                <input class="inputText" type="text" ng-model="newClass.fnlLoc" ng-minlength="1" placeholder="Type Final location"><br>
 
                 <input class="submitNew" type="submit">
                 <button type="button" class="cancel" id="cancelClass" ng-click="formCancel()">Cancel</button>
