@@ -74,6 +74,13 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
     $scope.showAddTodo = false;
     $scope.showAddClass = false;
 
+    $scope.newClass = {
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false
+    };
 
 
     $scope.isAdding = function () {
@@ -108,21 +115,37 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         $scope.newTodoItem = "";
     };
     $scope.addClass = function () {
-        $scope.testClasses.push({
-            name: $scope.newClass.className,
-            days: getDaysString($scope.newClass),
-            strTime: $scope.newClass.newLecTime.startHr + ":" + $scope.newClass.newLecTime.startMin + $scope.newClass.newLecTime.startAmPm,
-            endTime: $scope.newClass.newLecTime.endHr + ":" + $scope.newClass.newLecTime.endMin + $scope.newClass.newLecTime.endAmPm,
-            loc: $scope.newClass.lecPlace,
-            webUrl: $scope.newClass.web,
-            final: {
-                strTime: $scope.newClass.newFinTime.startHr + ":" + $scope.newClass.newFinTime.startMin + $scope.newClass.newFinTime.startAmPm,
-                endTime: $scope.newClass.newFinTime.endHr + ":" + $scope.newClass.newFinTime.endMin + $scope.newClass.newFinTime.endAmPm,
-                date: $scope.newClass.fnlDate,
-                loc: $scope.newClass.fnlLoc
-            }
-        });
-        $scope.newClass = angular.copy({});
-        $scope.showAddClass = false;
+        if ($scope.noDaysSelected()) {
+            alert("Please check at least one of the day boxes.");
+        } else {
+            $scope.testClasses.push({
+                name: $scope.newClass.className,
+                days: getDaysString($scope.newClass),
+                strTime: $scope.newClass.newLecTime.startHr + ":" + $scope.newClass.newLecTime.startMin + $scope.newClass.newLecTime.startAmPm,
+                endTime: $scope.newClass.newLecTime.endHr + ":" + $scope.newClass.newLecTime.endMin + $scope.newClass.newLecTime.endAmPm,
+                loc: $scope.newClass.lecPlace,
+                webUrl: $scope.newClass.web,
+                final: {
+                    strTime: $scope.newClass.newFinTime.startHr + ":" + $scope.newClass.newFinTime.startMin + $scope.newClass.newFinTime.startAmPm,
+                    endTime: $scope.newClass.newFinTime.endHr + ":" + $scope.newClass.newFinTime.endMin + $scope.newClass.newFinTime.endAmPm,
+                    date: $scope.newClass.fnlDate,
+                    loc: $scope.newClass.fnlLoc
+                }
+            });
+            $scope.newClass = angular.copy({});
+            $scope.showAddClass = false;
+            $scope.newClass.mon = false;
+            $scope.newClass.tue = false;
+            $scope.newClass.wed = false;
+            $scope.newClass.thu = false;
+            $scope.newClass.fri = false;
+        }
+    };
+
+    $scope.noDaysSelected = function () {
+        if (!$scope.newClass.mon && !$scope.newClass.tue && !$scope.newClass.wed && !$scope.newClass.thu && !$scope.newClass.fri) {
+            return true;
+        }
+        return false;
     };
 }]);

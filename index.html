@@ -102,8 +102,9 @@
                 <h3 style="border-bottom-style: inset; margin-bottom:10px;">Add New Class<br></h3>
 
                 <h4>Class Name:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.className" placeholder="Type new class name here"><br>
+                <input class="inputText" type="text" ng-model="newClass.className" ng-minlength="1" required placeholder="Type new class name here"><br>
                 <h4>Lecture Days:<br></h4>
+
                 <label><input class="newDays" type="checkbox" ng-model="newClass.mon" value="Monday">Monday</label>
                 <label><input class="newDays" type="checkbox" ng-model="newClass.tue" value="Tuesday">Tuesday</label>
                 <label><input class="newDays" type="checkbox" ng-model="newClass.wed" value="Wednesday">Wednesday</label>
@@ -113,7 +114,8 @@
                 <div id="lecTimeContainer">
                     <div id="lecStartTime">
                         <h4>Lecture Start Time:<br></h4>
-                        <select ng-model="newClass.newLecTime.startHr">
+                        <select ng-model="newClass.newLecTime.startHr" required>
+                            <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -127,19 +129,22 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newClass.newLecTime.startMin">
+                        <select ng-model="newClass.newLecTime.startMin" required>
+                            <option value=""></option>
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newClass.newLecTime.startAmPm">
+                        <select ng-model="newClass.newLecTime.startAmPm" required>
+                            <option value=""></option>
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
                     </div>
                     <div id="lecEndTime">
                         <h4>End Time:<br></h4>
-                        <select ng-model="newClass.newLecTime.endHr">
+                        <select ng-model="newClass.newLecTime.endHr" required>
+                            <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -153,12 +158,14 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newClass.newLecTime.endMin">
+                        <select ng-model="newClass.newLecTime.endMin" required>
+                            <option value=""></option>
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newClass.newLecTime.endAmPm">
+                        <select ng-model="newClass.newLecTime.endAmPm" required>
+                            <option value=""></option>
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
@@ -166,19 +173,20 @@
                 </div>
 
                 <h4>Lecture Location:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.lecPlace" placeholder="Type in lecture hall location"><br>
+                <input class="inputText" type="text" ng-model="newClass.lecPlace" ng-minlength="1" required placeholder="Type in lecture hall location"><br>
                 <h4>Class website:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.web" placeholder="full url please"><br>
+                <input class="inputText" type="text" ng-model="newClass.web" ng-minlength="1" required placeholder="full url please"><br>
 
                 <h3 style="border-bottom-style: inset; margin-bottom:10px;">Class Final<br></h3>
 
                 <h4>Final Date:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.fnlDate" placeholder="i.e. 05/15/12"><br>
+                <input class="inputText" type="text" ng-model="newClass.fnlDate" ng-minlength="1" required placeholder="i.e. 05/15/12"><br>
 
                 <div id="finTimeContainer">
                     <div id="finStartTime">
                         <h4>Final Start Time:<br></h4>
-                        <select ng-model="newClass.newFinTime.startHr">
+                        <select ng-model="newClass.newFinTime.startHr" required>
+                            <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -192,19 +200,22 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newClass.newFinTime.startMin">
+                        <select ng-model="newClass.newFinTime.startMin" required>
+                            <option value=""></option>
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newClass.newFinTime.startAmPm">
+                        <select ng-model="newClass.newFinTime.startAmPm" required>
+                            <option value=""></option>
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
                     </div>
                     <div id="finEndTime">
                         <h4>End Time:<br></h4>
-                        <select ng-model="newClass.newFinTime.endHr">
+                        <select ng-model="newClass.newFinTime.endHr" required>
+                            <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -218,12 +229,14 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> :
-                        <select ng-model="newClass.newFinTime.endMin">
+                        <select ng-model="newClass.newFinTime.endMin" required>
+                            <option value=""></option>
                             <option value="00">00</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                         </select>
-                        <select ng-model="newClass.newFinTime.endAmPm">
+                        <select ng-model="newClass.newFinTime.endAmPm" required>
+                            <option value=""></option>
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
@@ -231,7 +244,7 @@
                 </div>
 
                 <h4>Final Location:<br></h4>
-                <input class="inputText" type="text" ng-model="newClass.fnlLoc" ng-minlength="1" placeholder="Type Final location"><br>
+                <input class="inputText" type="text" ng-model="newClass.fnlLoc" ng-minlength="1" required placeholder="Type Final location"><br>
 
                 <input class="submitNew" type="submit">
                 <button type="button" class="cancel" id="cancelClass" ng-click="formCancel()">Cancel</button>
