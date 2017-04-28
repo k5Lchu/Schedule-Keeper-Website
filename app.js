@@ -1,9 +1,17 @@
-/*global $, jQuery, angular*/
+/*global $, jQuery, angular, alert*/
+
+// setup up module for angular app
 var myApp = angular.module("scheduleApp", []);
 
+// returns the string that will get stored with the class object
+// to keep track of what days the new class si asscociated with
+// newClass input is object that holds the booleans for each day
 function getDaysString(newClass) {
     "use strict";
     var dayString = "";
+
+    // series of values that will append to the string if the day
+    // is asscoiated with the new class
     if (newClass.mon) {
         dayString += "mo";
     }
@@ -22,17 +30,11 @@ function getDaysString(newClass) {
     return dayString;
 }
 
-function getTimes(times) {
-    "use strict";
-    var startAndEnd = times.split(";");
-    var start = startAndEnd[0].split(":");
-    var end = startAndEnd[2].split(":");
-
-    return [parseInt(start[0], 10) + ":" + parseInt(start[1], 10) + startAndEnd[1], parseInt(end[0], 10) + ":" + parseInt(end[1], 10) + startAndEnd[3]];
-}
-
+// define angualr controller
 myApp.controller("ScheduleController", ["$scope", function ($scope) {
     "use strict";
+
+    // testClasses data for test database
     $scope.testClasses = [
         {
             name: "Class 1",
@@ -62,6 +64,8 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
             }
         }
     ];
+
+    // test todo list for test database
     $scope.toDoItems = [
         "Get Milk",
         "Do hw1",
@@ -69,11 +73,12 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         "Play Pokemon go"
     ];
 
-
-
+    // set the forms to be hidden (connected with ng-show)
     $scope.showAddTodo = false;
     $scope.showAddClass = false;
 
+    // inital values for form validation purposes
+    // used in noDaysSelected()
     $scope.newClass = {
         mon: false,
         tue: false,
@@ -83,41 +88,67 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
     };
 
 
+    // fucntion to test if someone is adding a new class or todo
     $scope.isAdding = function () {
         return $scope.showAddClass || $scope.showAddTodo;
     };
+
+    // ng-click method when add task button on todo list is clicked
     $scope.todoClick = function () {
+        // display the add new todo item form
         $scope.showAddTodo = true;
     };
+
+    // ng-click method when add class button on classes area is clicked
     $scope.addClassClick = function () {
+        // display the add new class form
         $scope.showAddClass = true;
     };
+
+    // ng-click method for when someone decides to cancel the form
+    // for a new todo of new class item
     $scope.formCancel = function () {
+        // reset all form inputs to empty
+        // and close both forms
         $scope.newTodoItem = "";
         $scope.newClass = angular.copy({});
         $scope.showAddClass = false;
         $scope.showAddTodo = false;
     };
 
-
-
+    // ng-click method for when the x button is clicked on a todo item
+    // and will delete that todo item from database
     $scope.delTodo = function (todo) {
         var toDel = $scope.toDoItems.indexOf(todo);
         $scope.toDoItems.splice(toDel, 1);
     };
+
+    // ng-click mathod for when x button is clicked on a class item
+    // and will delete the class from the database
     $scope.delClass = function (clss) {
         var toDel = $scope.testClasses.indexOf(clss);
         $scope.testClasses.splice(toDel, 1);
     };
+
+    // ng-submit method when new todo item form is completed and submitted
+    // adds new todo item to the database and resets form field to empty
+    // while also closing the form
     $scope.addTodo = function () {
         $scope.toDoItems.push($scope.newTodoItem);
         $scope.showAddTodo = false;
         $scope.newTodoItem = "";
     };
+
+    // ng-submit method when new class form os cimpleted and submitted
+    // normal form validation in place for all inputs in form except
+    // the checkboxes for lecture days
     $scope.addClass = function () {
+        // if no days are selected for the lecture schedule
+        // display an alert box and do not continue the submit
         if ($scope.noDaysSelected()) {
             alert("Please check at least one of the day boxes.");
         } else {
+            // if form complete, create a new class object and push to the database
             $scope.testClasses.push({
                 name: $scope.newClass.className,
                 days: getDaysString($scope.newClass),
@@ -132,20 +163,17 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
                     loc: $scope.newClass.fnlLoc
                 }
             });
+            // reset form inputs to empty fields and close the form
             $scope.newClass = angular.copy({});
             $scope.showAddClass = false;
-            $scope.newClass.mon = false;
-            $scope.newClass.tue = false;
-            $scope.newClass.wed = false;
-            $scope.newClass.thu = false;
-            $scope.newClass.fri = false;
         }
     };
 
+    // function to check if the user has not selected at least one day for the new class lecture
     $scope.noDaysSelected = function () {
-        if (!$scope.newClass.mon && !$scope.newClass.tue && !$scope.newClass.wed && !$scope.newClass.thu && !$scope.newClass.fri) {
-            return true;
+        if ($scope.newClass.mon || $scope.newClass.tue || $scope.newClass.wed || $scope.newClass.thu || $scope.newClass.fri) {
+            return false;
         }
-        return false;
+        return true;
     };
 }]);

@@ -100,7 +100,7 @@ body {
     background-color: #7aadff;
 }
 
-#container {
+#webAndFinalsContainer {
     display: flex;
     justify-content: space-around;
 }
