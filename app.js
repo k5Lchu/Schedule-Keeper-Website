@@ -73,6 +73,7 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         "Play Pokemon go"
     ];
 
+    // hour options for lecture/final times
     $scope.hrs = {
         empty: "",
         one: "1",
@@ -89,6 +90,7 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         twelve: "12"
     };
 
+    // minute options for lecture/final times
     $scope.minutes = {
         empty: "",
         zero: "00",
@@ -96,6 +98,7 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         hour: "50"
     };
 
+    // days options for lecture days
     $scope.days = {
         monday: {
             name: "Monday",

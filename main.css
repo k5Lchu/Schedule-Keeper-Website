@@ -3,7 +3,8 @@ html {
 }
 
 h1 {
-    color: #009107;
+    color: #fff;
+    text-shadow: 2px 2px #00b50f;
 }
 
 h1, h4, h3 {
@@ -29,7 +30,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #a1ff8c;
+    background-color: #42f453;
     padding: 10px;
     padding-left: 50px;
     box-shadow: 0px 2px 15px;
