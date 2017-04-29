@@ -73,6 +73,52 @@ myApp.controller("ScheduleController", ["$scope", function ($scope) {
         "Play Pokemon go"
     ];
 
+    $scope.hrs = {
+        empty: "",
+        one: "1",
+        two: "2",
+        three: "3",
+        four: "4",
+        five: "5",
+        six: "6",
+        seven: "7",
+        eight: "8",
+        nine: "9",
+        ten: "10",
+        eleven: "11",
+        twelve: "12"
+    };
+
+    $scope.minutes = {
+        empty: "",
+        zero: "00",
+        half: "20",
+        hour: "50"
+    };
+
+    $scope.days = {
+        monday: {
+            name: "Monday",
+            value: "mon"
+        },
+        tuesday: {
+            name: "Tuesday",
+            value: "tue"
+        },
+        wednesday: {
+            name: "Wednesday",
+            value: "wed"
+        },
+        thursday: {
+            name: "Thursday",
+            value: "thu"
+        },
+        friday: {
+            name: "Friday",
+            value: "fri"
+        }
+    };
+
     // set the forms to be hidden (connected with ng-show)
     $scope.showAddTodo = false;
     $scope.showAddClass = false;

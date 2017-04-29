@@ -124,35 +124,16 @@
                 <input class="inputText" type="text" ng-model="newClass.className" ng-minlength="1" required placeholder="Type new class name here"><br>
                 <h4>Lecture Days:<br></h4>
 
-                <label><input class="newDays" type="checkbox" ng-model="newClass.mon" value="Monday">Monday</label>
-                <label><input class="newDays" type="checkbox" ng-model="newClass.tue" value="Tuesday">Tuesday</label>
-                <label><input class="newDays" type="checkbox" ng-model="newClass.wed" value="Wednesday">Wednesday</label>
-                <label><input class="newDays" type="checkbox" ng-model="newClass.thu" value="Thursday">Thursday</label>
-                <label><input class="newDays" type="checkbox" ng-model="newClass.fri" value="Friday">Friday</label><br>
+                <label ng-repeat="day in days"><input class="newDays" type="checkbox" ng-model="newClass[day.value]">{{day.name}}</label><br>
 
                 <div id="lecTimeContainer">
                     <div id="lecStartTime">
                         <h4>Lecture Start Time:<br></h4>
                         <select ng-model="newClass.newLecTime.startHr" required>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option ng-repeat="hr in hrs" value="{{hr}}">{{hr}}</option>
                         </select> :
                         <select ng-model="newClass.newLecTime.startMin" required>
-                            <option value=""></option>
-                            <option value="00">00</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
+                            <option ng-repeat="min in minutes" value="{{min}}">{{min}}</option>
                         </select>
                         <select ng-model="newClass.newLecTime.startAmPm" required>
                             <option value=""></option>
@@ -163,25 +144,10 @@
                     <div id="lecEndTime">
                         <h4>End Time:<br></h4>
                         <select ng-model="newClass.newLecTime.endHr" required>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option ng-repeat="hr in hrs" value="{{hr}}">{{hr}}</option>
                         </select> :
                         <select ng-model="newClass.newLecTime.endMin" required>
-                            <option value=""></option>
-                            <option value="00">00</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
+                            <option ng-repeat="min in minutes" value="{{min}}">{{min}}</option>
                         </select>
                         <select ng-model="newClass.newLecTime.endAmPm" required>
                             <option value=""></option>
@@ -205,25 +171,10 @@
                     <div id="finStartTime">
                         <h4>Final Start Time:<br></h4>
                         <select ng-model="newClass.newFinTime.startHr" required>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option ng-repeat="hr in hrs" value="{{hr}}">{{hr}}</option>
                         </select> :
                         <select ng-model="newClass.newFinTime.startMin" required>
-                            <option value=""></option>
-                            <option value="00">00</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
+                            <option ng-repeat="min in minutes" value="{{min}}">{{min}}</option>
                         </select>
                         <select ng-model="newClass.newFinTime.startAmPm" required>
                             <option value=""></option>
@@ -234,25 +185,10 @@
                     <div id="finEndTime">
                         <h4>End Time:<br></h4>
                         <select ng-model="newClass.newFinTime.endHr" required>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option ng-repeat="hr in hrs" value="{{hr}}">{{hr}}</option>
                         </select> :
                         <select ng-model="newClass.newFinTime.endMin" required>
-                            <option value=""></option>
-                            <option value="00">00</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
+                            <option ng-repeat="min in minutes" value="{{min}}">{{min}}</option>
                         </select>
                         <select ng-model="newClass.newFinTime.endAmPm" required>
                             <option value=""></option>
