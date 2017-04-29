@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <title>Schedule</title>
         <meta name="description" content="Schedule">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="public/styles/main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="app.js"></script>
+        <script src="public/scripts/app.js"></script>
     </head>
     <header id="banner">
         <h1>My Schedule</h1>
@@ -23,9 +23,9 @@
                     database and display each todo item. Each item has a delete x button to delete the item
                     from the list -->
                 <ul>
-                    <li ng-repeat="item in toDoItems">{{item}}<img src = "cancel_but.png"
-                                                                   onmouseover="this.src='cancel_but_hover.png'"
-                                                                   onmouseout="this.src='cancel_but.png'"
+                    <li ng-repeat="item in toDoItems">{{item}}<img src = "public/images/cancel_but.png"
+                                                                   onmouseover="this.src='public/images/cancel_but_hover.png'"
+                                                                   onmouseout="this.src='public/images/cancel_but.png'"
                                                                    ng-click="delTodo(item);"/></li>
                 </ul>
             </div>
@@ -37,9 +37,9 @@
             <!-- title also has an add class button to bring up fomr to add new class -->
             <h3>Classes<button ng-click="addClassClick()">Add Class</button></h3>
             <div id="clssCont">
-                <div ng-repeat="class in testClasses">{{class.name}}<img src = "cancel_but.png"
-                                                                         onmouseover="this.src='cancel_but_hover.png'"
-                                                                         onmouseout="this.src='cancel_but.png'"
+                <div ng-repeat="class in testClasses">{{class.name}}<img src = "public/images/cancel_but.png"
+                                                                         onmouseover="this.src='public/images/cancel_but_hover.png'"
+                                                                         onmouseout="this.src='public/images/cancel_but.png'"
                                                                          ng-click="delClass(class)"/></div>
             </div>
         </div>
