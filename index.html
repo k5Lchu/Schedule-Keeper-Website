@@ -9,6 +9,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="public/scripts/app.js"></script>
     </head>
+
     <header id="banner">
         <h1>My Schedule</h1>
     </header>
@@ -23,7 +24,7 @@
                     database and display each todo item. Each item has a delete x button to delete the item
                     from the list -->
                 <ul>
-                    <li ng-repeat="item in toDoItems">{{item}}<img src = "public/images/cancel_but.png"
+                    <li ng-repeat="item in toDoItems">{{item}}<img class="delete" src = "public/images/cancel_but.png"
                                                                    onmouseover="this.src='public/images/cancel_but_hover.png'"
                                                                    onmouseout="this.src='public/images/cancel_but.png'"
                                                                    ng-click="delTodo(item);"/></li>
@@ -37,7 +38,7 @@
             <!-- title also has an add class button to bring up fomr to add new class -->
             <h3>Classes<button ng-click="addClassClick()">Add Class</button></h3>
             <div id="clssCont">
-                <div ng-repeat="class in testClasses">{{class.name}}<img src = "public/images/cancel_but.png"
+                <div ng-repeat="class in testClasses">{{class.name}}<img class="delete" src = "public/images/cancel_but.png"
                                                                          onmouseover="this.src='public/images/cancel_but_hover.png'"
                                                                          onmouseout="this.src='public/images/cancel_but.png'"
                                                                          ng-click="delClass(class)"/></div>
