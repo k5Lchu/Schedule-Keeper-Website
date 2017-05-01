@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="scheduleApp" ng-controller="ScheduleController">
     <head>
         <meta charset="utf-8">
         <title>Schedule</title>
@@ -10,16 +10,21 @@
         <script src="public/scripts/app.js"></script>
     </head>
 
-    <header id="banner">
-        <h1>My Schedule</h1>
-    </header>
-    <body ng-app="scheduleApp" ng-controller="ScheduleController">
+    <body>
+        <header id="banner">
+            <h1>My Schedule
+                <div class="add">
+                    <span id="todoButton" ng-click="todoClick()">Add Todo</span>
+                    <span id="classButton" ng-click="addClassClick()">Add Class</span>
+                </div>
+            </h1>
+        </header>
 
         <!-- Container to house the todo list app with the h3 title and ul -->
         <div id="todoContainer">
             <div id="todo">
                 <!-- title also contains an add task button to bring up form to add new todo item -->
-                <h3>Todo List<button id="addTodo" ng-click="todoClick()">Add Task</button></h3>
+                <h3>Todo List</h3>
                 <!-- main ul to display the list fo todo items.Uses ng-repeat to go through the entire todo
                     database and display each todo item. Each item has a delete x button to delete the item
                     from the list -->
@@ -27,7 +32,7 @@
                     <li ng-repeat="item in toDoItems">{{item}}<img class="delete" src = "public/images/cancel_but.png"
                                                                    onmouseover="this.src='public/images/cancel_but_hover.png'"
                                                                    onmouseout="this.src='public/images/cancel_but.png'"
-                                                                   ng-click="delTodo(item);"/></li>
+                                                                   ng-click="delTodo(item)"/></li>
                 </ul>
             </div>
         </div>
@@ -36,7 +41,7 @@
             same format as the todo list -->
         <div id="classList">
             <!-- title also has an add class button to bring up fomr to add new class -->
-            <h3>Classes<button ng-click="addClassClick()">Add Class</button></h3>
+            <h3>Classes</h3>
             <div id="clssCont">
                 <div ng-repeat="class in testClasses">{{class.name}}<img class="delete" src = "public/images/cancel_but.png"
                                                                          onmouseover="this.src='public/images/cancel_but_hover.png'"

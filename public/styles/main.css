@@ -1,12 +1,12 @@
 html {
     background-image: url(https://source.unsplash.com/1920x1080/?nature);
     background-size: cover;
-    transition: background-image 5s ease-in-out;
+    background-attachment: fixed;
 }
 
 h1 {
     color: #fff;
-    text-shadow: 2px 2px #00b50f;
+    text-shadow: 2px 2px #64aebc;
 }
 
 h1, h4, h3 {
@@ -32,10 +32,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #42f453;
+    background-color: #0b96a3;
     padding: 10px;
     padding-left: 50px;
     box-shadow: 0px 2px 15px;
+    box-sizing: border-box;
 }
 
 #week h3, #web h3, #finals h3, #todo h3, #classList h3 {
@@ -147,23 +148,32 @@ li {
 
 .delete:hover {
     border-style: outset;
-
+    cursor: pointer;
 }
 
 .delete:active {
     border-style: inset;
 }
 
-button {
-    width: 80px;
-    height: 25px;
+.add {
     float: right;
-    border-radius: 5px;
-    box-shadow: 0px 0px 1px;
+    margin-right: 5%;
+    padding-bottom: 8px;
 }
 
-button:hover {
-    background-color: #cecece;
+#todoButton, #classButton {
+    border-style: dashed;
+    border-radius: 5px;
+    border-width: 2px;
+    padding: 15px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#todoButton:hover, #classButton:hover {
+    background-color: #053c47;
+    text-shadow: none;
+    cursor: pointer;
 }
 
 #formBackground {
