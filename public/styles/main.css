@@ -6,7 +6,7 @@ html {
 
 h1 {
     color: #fff;
-    text-shadow: 2px 2px #64aebc;
+    text-shadow:3px 3px 5px purple;
 }
 
 h1, h4, h3 {
@@ -32,7 +32,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #0b96a3;
+    /*background-color: #0b96a3;*/
+    background: linear-gradient(-10deg, #c10dbb, #6542f4);
     padding: 10px;
     padding-left: 50px;
     box-shadow: 0px 2px 15px;
@@ -171,7 +172,7 @@ li {
 }
 
 #todoButton:hover, #classButton:hover {
-    background-color: #053c47;
+    background-color: #561677;
     text-shadow: none;
     cursor: pointer;
 }

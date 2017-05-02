@@ -30,6 +30,11 @@ function getDaysString(newClass) {
     return dayString;
 }
 
+window.onbeforeunload = function () {
+    "use strict";
+    window.scrollTo(0, 0);
+};
+
 // define angualr controller
 myApp.controller("ScheduleController", ["$scope", function ($scope) {
     "use strict";
